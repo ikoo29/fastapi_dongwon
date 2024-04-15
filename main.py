@@ -1,5 +1,20 @@
+import os
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
+from databases import Database
 
 app = FastAPI()
-app.mount("/", StaticFiles(directory="public", html = True), name="static")
+
+# 환경변수에서 데이터베이스 설정 읽기
+DB_USER = os.getenv("DB_USERNAME")
+DB_PASS = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_NAME = os.getenv("DB_NAME")
+
+# 데이터베이스 URL 구성
+DATABASE_URL = f"postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+app = FastAPI()
+
+# Database 객체 생성
+database = Database(DATABASE_URL)
