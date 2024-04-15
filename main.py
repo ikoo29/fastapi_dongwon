@@ -28,10 +28,9 @@ async def shutdown():
     await database.disconnect()
 
 @app.post("/webhook/")
-async def get_coordinates(request: Request):
+async def get_property_details(request: Request):
     # 요청 JSON 데이터를 파이썬 객체로 변환
     data = await request.json()
-    print(data)
     # 변수들 추출
     customer_status = data['action']['detailParams']['customer_status']['origin']
     property_type = data['action']['detailParams']['property_type']['origin']
