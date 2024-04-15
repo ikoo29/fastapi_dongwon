@@ -42,9 +42,6 @@ async def get_property_details(request: Request):
     contact_number = data['action']['detailParams']['contact_number']['origin']
     # 모든 정보를 반환
     return {
-        "road": road,
-        "num": num,
-        "full_address": full_address,
         "customer_status": customer_status,
         "property_type": property_type,
         "address": address,
