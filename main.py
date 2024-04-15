@@ -1,5 +1,5 @@
 import os
-from fastapi import FastAPI, request
+from fastapi import FastAPI, Request
 from databases import Database
 
 app = FastAPI()
