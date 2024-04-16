@@ -40,6 +40,25 @@ async def get_property_details(request: Request):
     maintenance_detail = data['action']['detailParams']['maintenance_detail']['origin']
     visit_times = data['action']['detailParams']['visit_times']['origin']
     contact_number = data['action']['detailParams']['contact_number']['origin']
+
+    # 데이터베이스에 저장
+    query = """
+    INSERT INTO submissions (customer_status, property_type, address, move_in_date, deposit_and_rent, maintenance_detail, visit_times, contact_number)
+    VALUES (:customer_status, :property_type, :address, :move_in_date, :deposit_and_rent, :maintenance_detail, :visit_times, :contact_number)
+    """
+    values = {
+        "customer_status": customer_status,
+        "property_type": property_type,
+        "address": address,
+        "move_in_date": move_in_date,
+        "deposit_and_rent": deposit_and_rent,
+        "maintenance_detail": maintenance_detail,
+        "visit_times": visit_times,
+        "contact_number": contact_number
+    }
+    await database.execute(query, values)
+    
+    
     # 모든 정보를 반환
     return {
         "customer_status": customer_status,
@@ -51,13 +70,3 @@ async def get_property_details(request: Request):
         "visit_times": visit_times,
         "contact_number": contact_number
     }
-
-
-@app.post("/add-contact")
-async def add_contact():
-    query = """
-    INSERT INTO "test-table" ("이름", "주소", "전화번호")
-    VALUES ('박기자', '중동', '010-2959-1111');
-    """
-    await database.execute(query)
-    return {"status": "Contact added successfully"}
