@@ -37,7 +37,7 @@ async def get_property_details(request: Request):
     address = data['action']['detailParams']['address']['origin']
     move_in_date = data['action']['detailParams']['move_in_date']['origin']
     deposit_and_rent = data['action']['detailParams']['deposit_and_rent']['origin']
-    maintenance_details = data['action']['detailParams']['maintenance_detail']['origin']
+    maintenance_details = data['action']['detailParams']['maintenance_details']['origin']
     visit_times = data['action']['detailParams']['visit_times']['origin']
     contact_number = data['action']['detailParams']['contact_number']['origin']
 
