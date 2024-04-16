@@ -37,14 +37,14 @@ async def get_property_details(request: Request):
     address = data['action']['detailParams']['address']['origin']
     move_in_date = data['action']['detailParams']['move_in_date']['origin']
     deposit_and_rent = data['action']['detailParams']['deposit_and_rent']['origin']
-    maintenance_detail = data['action']['detailParams']['maintenance_detail']['origin']
+    maintenance_details = data['action']['detailParams']['maintenance_detail']['origin']
     visit_times = data['action']['detailParams']['visit_times']['origin']
     contact_number = data['action']['detailParams']['contact_number']['origin']
 
     # 데이터베이스에 저장
     query = """
     INSERT INTO submissions (customer_status, property_type, address, move_in_date, deposit_and_rent, maintenance_detail, visit_times, contact_number)
-    VALUES (:customer_status, :property_type, :address, :move_in_date, :deposit_and_rent, :maintenance_detail, :visit_times, :contact_number)
+    VALUES (:customer_status, :property_type, :address, :move_in_date, :deposit_and_rent, :maintenance_details, :visit_times, :contact_number)
     """
     values = {
         "customer_status": customer_status,
@@ -52,7 +52,7 @@ async def get_property_details(request: Request):
         "address": address,
         "move_in_date": move_in_date,
         "deposit_and_rent": deposit_and_rent,
-        "maintenance_detail": maintenance_detail,
+        "maintenance_details": maintenance_details,
         "visit_times": visit_times,
         "contact_number": contact_number
     }
