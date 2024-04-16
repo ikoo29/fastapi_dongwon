@@ -43,7 +43,7 @@ async def get_property_details(request: Request):
 
     # 데이터베이스에 저장
     query = """
-    INSERT INTO submissions (customer_status, property_type, address, move_in_date, deposit_and_rent, maintenance_detail, visit_times, contact_number)
+    INSERT INTO submissions (customer_status, property_type, address, move_in_date, deposit_and_rent, maintenance_details, visit_times, contact_number)
     VALUES (:customer_status, :property_type, :address, :move_in_date, :deposit_and_rent, :maintenance_details, :visit_times, :contact_number)
     """
     values = {
@@ -66,7 +66,7 @@ async def get_property_details(request: Request):
         "address": address,
         "move_in_date": move_in_date,
         "deposit_and_rent": deposit_and_rent,
-        "maintenance_detail": maintenance_detail,
+        "maintenance_details": maintenance_details,
         "visit_times": visit_times,
         "contact_number": contact_number
     }
